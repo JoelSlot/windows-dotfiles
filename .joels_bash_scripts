@@ -1,0 +1,14 @@
+tmuxgo() {
+  if [ $# -lt 1 ]; then
+    echo "No arguments provided ussage:\nfsearch foo /bar"
+    return 1
+  fi
+
+  if tmux has-session -t $1; then
+    tmux attach -t $1
+  else
+    echo "Creating new session $1"
+    tmux new -s $1
+  fi
+}
+
